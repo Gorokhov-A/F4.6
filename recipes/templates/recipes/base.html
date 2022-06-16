@@ -1,0 +1,58 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="Description" content="Enter your description here" />
+  <link rel="apple-touch-icon" href="{% static 'img/favicons/favicon-96x96.png' %}" sizes="96x96">
+  <link rel="icon" href="{% static 'img/favicons/favicon-32x32.png' %}" sizes="32x32" type="image/png">
+  <link rel="icon" href="{% static 'img/favicons/favicon-16x16.png' %}" sizes="16x16" type="image/png">
+  <link rel="icon" href="{% static 'img/favicons/favicon.ico' %}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  <title> {% block title %}Recipes
+    {% endblock title %}</title>
+
+  <script defer src="{% static 'js/script.js' %}"></script>
+
+</head>
+
+<body>
+  <header class="site-header sticky-top py-1">
+
+
+    {%if user.is_authenticated %}
+
+    {% include 'includes/dashboard.html' %}
+    {% else%}
+    {% include 'includes/navbar.html' %}
+
+    {%endif%}
+
+  </header>
+
+  <main>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+  </main>
+  {% include 'includes/footer.html' %}
+</body>
+
+</html>

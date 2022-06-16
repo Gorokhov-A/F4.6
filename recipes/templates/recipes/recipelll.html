@@ -1,0 +1,33 @@
+{%  extends 'recipes/base.html' %}
+{% load static %}
+{% block content %}
+<h1>
+
+  Recipe List
+</h1>
+
+
+{% for recipe in recipes_list%}
+<h2>
+  <a href="{{recipe.id}}">
+
+    {{recipe.title}}
+  </a>
+</h2>
+<h4>
+  <a href="{{recipe.getCategory|lower}}">{{recipe.getCategory}}</a>
+
+</h4>
+<img src="/{{recipe.img}}" alt="{{recipe.img}}">
+<p>
+
+  {{recipe.ingredients}}
+</p>
+<p>
+
+  {{recipe.directions}}
+</p>
+
+{% endfor %} }
+
+{% endblock content %}
